@@ -45,3 +45,41 @@ kubectl apply -f app1.yaml
 ```sh
 kubectl apply -f app2.yaml
 ```
+
+## Subir o Elasticsearch no namespace logging (localmente/minikube)
+A diferença está no provisionamento do volume.
+
+```sh
+kubectl create namespace logging
+```
+```sh
+kubectl apply -f local-elasticsearch-pv.yaml
+```
+```sh
+kubectl apply -f local-elasticsearch.yaml
+```
+
+## Subir o Elasticsearch no namespace logging (AWS (EKS), GKE ou AKS)
+A diferença está no provisionamento do volume.
+
+```sh
+kubectl create namespace logging
+```
+```sh
+kubectl apply -f prd-elasticsearch.yaml
+```
+
+### Verificar Elasticsearch Pod & PVC
+```sh
+kubectl get pods -n logging
+```
+```sh
+kubectl describe pod <pod-name> -n logging
+```
+
+```sh
+kubectl get pvc -n logging
+```
+```sh
+kubectl get pv -n logging
+```
